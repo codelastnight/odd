@@ -6,7 +6,7 @@ class App extends Component {
 
 		this.state = {
 			name: 'John Doe',
-			balance: 10000, // in dollars, random between 5k and 15k, normal
+			balance: (Math.floor(Math.random() * 11) + 5) * 1000, // in dollars, random between 5k and 15k
 			paymentDue: 0,
 			loans: [
 				/* { APR, amountOwed, startTime, minDue } */
