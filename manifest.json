@@ -2,5 +2,9 @@
 	"name": "odd",
 	"version": "0.1",
 	"description": "we use the even api",
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": false
+	},
 	"manifest_version": 2
 }
