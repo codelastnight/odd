@@ -108,6 +108,7 @@
 		height: 3em;
 		overflow-y: hidden;
 		box-shadow: $dropShadow;
+		transition: height 0.5s;
 		&.expand {
 			height: 15em;
 		}

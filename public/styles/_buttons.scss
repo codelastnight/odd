@@ -7,10 +7,12 @@
 	color: #000;
 	box-shadow: $dropShadow;
 	cursor: pointer;
+	transition: all 0.3s;
 	&:hover {
 		background: #000;
 		color: #fff;
 		box-shadow: $dropShadowHover;
+		transform: translate(0, -3px);
 	}
 }
 .clear {
