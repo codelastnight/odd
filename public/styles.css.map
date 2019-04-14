@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["styles/main.scss","styles/_grid.scss"],"names":[],"mappings":"AACQ;ACDR;EACE;EACA;EACA","file":"styles.css"}
+{"version":3,"sourceRoot":"","sources":["styles/main.scss","styles/_typography.scss","styles/_grid.scss"],"names":[],"mappings":"AACQ;ACDA;AAER;EACC;EACA;;;AAED;EACC;EACA;;;ACRD;EACE;EACA;EACA","file":"styles.css"}

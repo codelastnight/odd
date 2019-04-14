@@ -10,8 +10,42 @@ import React, { Component } from 'react'
  *      onNextMonth: Function // passed into next month button's onclick
  * }
  */
+
+const monthNames = [
+	'January',
+	'February',
+	'March',
+	'April',
+	'May',
+	'June',
+	'July',
+	'August',
+	'September',
+	'October',
+	'November',
+	'December'
+]
 export default class Header extends Component {
 	render() {
-		return <div className="header" />
+		return (
+			<div className="header">
+				<div className="profile">
+					<img src="../public/images/pfp1.png" alt="pee" />
+				</div>
+				<div className="info">
+					<h1 className="name">Mrs. Stevejobert B. JR IV </h1>
+					<div className="stats">
+						<h3>Credit Score: {this.props.creditScore}</h3>
+						<h3>Current Balance: {this.props.balance}</h3>
+						<h3>Payment Due: {this.props.paymentDue}</h3>
+						<h3>Total Revenue: {this.props.paymentDue}</h3>
+					</div>
+				</div>
+				<div className="month">
+					<h3>Year {Math.floor(this.props.month / 12)}</h3>
+					<p>{monthNames[this.props.month % 12]}</p>
+				</div>
+			</div>
+		)
 	}
 }

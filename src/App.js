@@ -186,7 +186,13 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<Header />
+				<Header
+					creditScore={700}
+					balance={7000}
+					paymentDue={600}
+					totalRevenue={600}
+					month={6}
+				/>
 				{/* <Button type="meme" onClick={}>text</Button> */}
 			</div>
 		)
