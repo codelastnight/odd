@@ -157,7 +157,11 @@ class App extends Component {
 	}
 
 	nextMonth = () => {
+		// recession results in productivity decreasing by 50%
+		// contraction results in productivity decreasing by 20%
 		let recession = Math.random() < 1 / 120
+		let contraction = Math.random() < 1 / 12
+
 		let newMonth = this.state.month + 1
 
 		// generate 5 new store options
