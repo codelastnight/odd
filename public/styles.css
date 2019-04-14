@@ -235,6 +235,7 @@ h4 {
 }
 
 .notifList {
+  margin-left: 1em;
   grid-column: 4/5;
   grid-row: 3/4;
 }

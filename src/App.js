@@ -22,6 +22,18 @@ const customStyles = {
 	}
 }
 
+const serious = [
+	'Oopsie woopsie! The economy just crashed!',
+	'A catastrophic earthquake wipe out half your employees.',
+	'You committed tax fraud!'
+]
+const mild = [
+	'YEET bear market :)',
+	'We are experiencing a recessionary gap.',
+	'You get a cat girlfriend and your reputation goes down the drain.',
+	"Your CTO tweets that you're going private."
+]
+
 const getRandomZipCode = location => {
 	switch (location) {
 		case 2:
@@ -167,11 +179,29 @@ class App extends Component {
 		let recession = Math.random() < 1 / 120
 		let contraction = Math.random() < 1 / 12
 
-		if (recession || contraction) {
+		if (recession) {
+			let newNotifs = this.state.notifs.slice()
+
+			newNotifs.splice(
+				0,
+				0,
+				serious[Math.floor(Math.random() * serious.length)] +
+					' Revenue decreases by 50%.'
+			)
 			this.setState({
-				notifs: this.state.notifs
-					.slice()
-					.concat('Oopsie woopsie! The economy crashed!')
+				notifs: newNotifs
+			})
+		} else if (contraction) {
+			let newNotifs = this.state.notifs.slice()
+
+			newNotifs.splice(
+				0,
+				0,
+				mild[Math.floor(Math.random() * mild.length)] +
+					' Revenue decreases by 20%.'
+			)
+			this.setState({
+				notifs: newNotifs
 			})
 		}
 
