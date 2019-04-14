@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import Button from './Button.js'
 /**
  * props: {
  *      creditScore: Number,
@@ -25,6 +25,7 @@ const monthNames = [
 	'November',
 	'December'
 ]
+
 export default class Header extends Component {
 	render() {
 		return (
@@ -45,6 +46,9 @@ export default class Header extends Component {
 					<h3>Year {Math.floor(this.props.month / 12)}</h3>
 					<p>{monthNames[this.props.month % 12]}</p>
 				</div>
+				<Button type="fill" onClick={this.props.onNextMonth}>
+					Next Month
+				</Button>
 			</div>
 		)
 	}
