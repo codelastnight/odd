@@ -93,7 +93,8 @@ class App extends Component {
 					termLength: 36,
 					monthlyPayment: 400,
 					minDue: 400,
-					APR: 5
+					APR: 5,
+					imgURL: 'https://lt-scorecard-logo.s3.amazonaws.com/55751583SEO.gif'
 				}
 			],
 			monthlyRevenue: 0, // money that will be earned by NEXT month
