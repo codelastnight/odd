@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Button from './Button'
+import Header from './Header'
 
 const getRandomZipCode = location => {
 	switch (location) {
@@ -36,6 +37,30 @@ const generateStoreOption = () => {
 	revenue = revenue - (revenue % 100)
 
 	return { monthlyCost: cost, monthlyRevenue: revenue }
+}
+
+const calculateCreditScore = creditReport => {
+	let scorePercent = 0
+
+	// payment history is 40% of the credit score
+	if (creditReport.onTimePayments === 0 && creditReport.missedPayments === 0)
+		scorePercent += 0.15
+	else
+		scorePercent +=
+			0.4 *
+			(creditReport.onTimePayments /
+				(creditReport.missedPayments + creditReport.onTimePayments)) **
+				4
+
+	// average age of accounts is 40% of credit score
+	scorePercent += 0.4 * (2 / (1 + Math.E ** (-creditReport.avgAge / 12)) - 1)
+
+	// account diversity (number of accounts is 20% of credit score)
+	scorePercent +=
+		0.2 * (2 / (1 + Math.E ** (-creditReport.numberOfAccounts / 2)) - 1)
+
+	// real credit scores range form 300 to 850
+	return Math.floor(scorePercent * 551) + 300
 }
 
 class App extends Component {
@@ -145,6 +170,7 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
+				<Header />
 				{/* <Button type="meme" onClick={}>text</Button> */}
 			</div>
 		)
