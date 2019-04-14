@@ -45,7 +45,7 @@ export default class Header extends Component {
 					<h3>Year {Math.floor(this.props.month / 12)}</h3>
 					<p>{monthNames[this.props.month % 12]}</p>
 				</div>
-				<div>
+				<div className="next">
 					<Button type="fill" onClick={this.props.onNextMonth}>
 						Next Month
 					</Button>
