@@ -157,10 +157,7 @@ class App extends Component {
 	}
 
 	nextMonth = () => {
-
-    let recession = Math.random() < (1 / 120)
-    let 
-
+		let recession = Math.random() < 1 / 120
 		let newMonth = this.state.month + 1
 
 		// generate 5 new store options
