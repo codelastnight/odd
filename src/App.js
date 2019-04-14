@@ -51,7 +51,7 @@ const generateStoreOption = () => {
 	)
 	revenue = revenue - (revenue % 100)
 
-	return { monthlyCost: cost, monthlyRevenue: revenue }
+	return { monthlyCost: cost, monthlyIncome: revenue }
 }
 
 const calculateCreditScore = creditReport => {
@@ -85,12 +85,12 @@ class App extends Component {
 		this.state = {
 			name: 'John Doe',
 			balance: (Math.floor(Math.random() * 11) + 5) * 1000, // in dollars, random between 5k and 15k
-			paymentDue: 2000, // payment due for THIS month
+			paymentDue: 7000, // payment due for THIS month
 			loans: [
-				/* { startTime, termLength, monthlyPayment, minDue, APR, imgURL } */
+				/* { startTime, termLength, monthlyPayment, APR, imgURL } */
 			],
 			monthlyRevenue: 8000, // money that will be earned by NEXT month
-			stores: [{ monthlyCost: 2000, monthlyIncome: 8000 }],
+			stores: [{ monthlyCost: 7000, monthlyIncome: 8000 }],
 			creditReport: {
 				onTimePayments: 0,
 				missedPayments: 0,
@@ -99,35 +99,12 @@ class App extends Component {
 			},
 			location: 0,
 			month: 0, // time counter,
-			storeOptions: [
-				/* { monthlyCost, monthlyIncome } */
-			],
+			storeOptions: Array.from({ length: 5 }, () => generateStoreOption()),
 			loanOptions: [
 				// { termLength, APR, imgURL }
 			],
-			isNewLoanModalOpen: false
-		}
-	}
-
-	payLoan = i => {
-		let newLoans = this.state.loans.slice()
-		let newBalance = this.state.balance - newLoans[i].minDue
-
-		if (newBalance < 0) return
-		let newPaymentDue = this.state.paymentDue - newLoans[i].minDue
-
-		newLoans[i].minDue = 0
-
-		this.setState({
-			loans: newLoans,
-			balance: newBalance,
-			paymentDue: newPaymentDue
-		})
-	}
-
-	payAllLoans = () => {
-		for (let i = 0; i < this.state.loans.length; i++) {
-			this.payLoan(i)
+			isNewLoanModalOpen: false,
+			isNewStoreModalOpen: false
 		}
 	}
 
@@ -135,7 +112,6 @@ class App extends Component {
 		let newLoans = this.state.loans.slice().concat({
 			startTime: this.state.month,
 			monthlyPayment: monthlyPaymentOfLoan(termLength, APR, amountOwed),
-			minDue: 0,
 			termLength,
 			APR,
 			imgURL
@@ -152,7 +128,11 @@ class App extends Component {
 		// buys store indexed as i in the storeOptions array
 		if (this.state.balance < this.state.storeOptions[i].monthlyCost) return
 
-		let newBalance = this.state.balance - this.state.storeOptions[i].monthlyCost
+		let newPaymentDue =
+			this.state.paymentDue + this.state.storeOptions[i].monthlyCost
+
+		let newMonthlyRevenue =
+			this.state.monthlyRevenue + this.state.storeOptions[i].monthlyIncome
 
 		let newStoreOptions = this.state.storeOptions.slice()
 		let newStores = this.state.stores
@@ -160,9 +140,11 @@ class App extends Component {
 			.concat(newStoreOptions.splice(i, 1)[0])
 
 		this.setState({
-			balance: newBalance,
+			paymentDue: newPaymentDue,
 			storeOptions: newStoreOptions,
-			stores: newStores
+			monthlyRevenue: newMonthlyRevenue,
+			stores: newStores,
+			isNewStoreModalOpen: false
 		})
 	}
 
@@ -184,7 +166,8 @@ class App extends Component {
 		let newStoreOptions = Array.from({ length: 5 }, () => generateStoreOption())
 
 		// add monthlyRevenue to balance
-		let newBalance = this.state.balance + this.state.monthlyRevenue
+		let newBalance =
+			this.state.balance - this.state.paymentDue + this.state.monthlyRevenue
 
 		// update credit report
 		let newCreditReport = this.state.creditReport
@@ -193,25 +176,19 @@ class App extends Component {
 		let newLoans = this.state.loans.slice()
 
 		for (let i = newLoans.length - 1; i >= 0; i--) {
-			if (
-				newMonth - newLoans[i].startTime >= newLoans[i].termLength &&
-				newLoans[i].minDue === 0
-			) {
+			if (newMonth - newLoans[i].startTime >= newLoans[i].termLength) {
 				newLoans.splice(i, 1)
 			}
 		}
 
 		newLoans.forEach(l => {
-			if (l.minDue > 0) newCreditReport.missedPayments++
-			else newCreditReport.onTimePayments++
-
-			l.minDue += l.monthlyPayment
+			newCreditReport.onTimePayments++
 		})
 
 		// adjust paymentdue
 		let newPaymentDue =
 			this.state.stores.reduce((a, c) => a + c.monthlyCost, 0) +
-			newLoans.reduce((a, c) => a + c.minDue, 0)
+			newLoans.reduce((a, c) => a + c.monthlyPayment, 0)
 
 		// update credit report
 		newCreditReport.numberOfAccounts = newLoans.length
@@ -246,6 +223,14 @@ class App extends Component {
 		this.setState({ isNewLoanModalOpen: false })
 	}
 
+	openNewStoreModal = async () => {
+		this.setState({ isNewStoreModalOpen: true })
+	}
+
+	closeNewStoreModal = () => {
+		this.setState({ isNewStoreModalOpen: false })
+	}
+
 	render() {
 		return (
 			<div className="App">
@@ -277,6 +262,18 @@ class App extends Component {
 						})}
 					/>
 				</Modal>
+				<Modal
+					isOpen={this.state.isNewStoreModalOpen}
+					onRequestClose={this.closeNewStoreModal}
+					style={customStyles}
+					contentLabel="New Store">
+					<h2>New Store</h2>
+					<StoreList
+						onNewStore={this.buyStore}
+						prospective={true}
+						stores={this.state.storeOptions}
+					/>
+				</Modal>
 				<Header
 					creditScore={calculateCreditScore(this.state.creditReport)}
 					balance={this.state.balance}
@@ -289,7 +286,7 @@ class App extends Component {
 				<LoanList loans={this.state.loans} onNewLoan={this.openNewLoanModal} />
 				<StoreList
 					stores={this.state.stores}
-					onNewLoan={this.openNewStoreModal}
+					onNewStore={this.openNewStoreModal}
 				/>
 			</div>
 		)
