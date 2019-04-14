@@ -43,6 +43,26 @@
 		grid-row: 4/5;
     grid-template-columns: 20% auto 20%;
     grid-template-rows: 20% auto 20%;
+    .storeIMG {
+      grid-column: 1/2;
+  		grid-row: 1/2;
+    }
+    .title {
+      grid-column: 2/3;
+  		grid-row: 1/2;
+    }
+    .revenue {
+      grid-column: 3/4;
+  		grid-row: 1/2;
+    }
+    .info {
+      grid-column: 1/4;
+  		grid-row: 2/3;
+    }
+    .buttons {
+      grid-column: 1/2;
+  		grid-row: 3/4;
+    }
 	}
 	.notifs {
 		grid-column: 4/5;
