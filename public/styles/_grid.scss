@@ -96,14 +96,16 @@
 }
 
 .storeList {
+	margin-left: 1em;
 	grid-column: 3/4;
 	grid-row: 3/4;
 	.store {
+		margin-bottom: 1em;
 		padding: 1em;
 		grid-column: 3/4;
 		grid-row: 4/5;
 		border: 2px solid #000;
-		height: 5em;
+		height: 3em;
 		overflow-y: hidden;
 		box-shadow: $dropShadow;
 		&.expand {

@@ -22,21 +22,26 @@ export default class StoreList extends Component {
 				<h1>My Properties</h1>
 				{this.props.stores.map((s, i) => (
 					<Store
+						prospective={this.props.prospective}
 						monthlyCost={s.monthlyCost}
 						monthlyIncome={s.monthlyIncome}
 						open={this.state.openStore === i}
 						toggleExpand={() => {
-							if (this.state.openStore === i) {
-								this.setState({ openStore: -1 })
+							if (this.props.prospective) {
+								this.props.onNewStore(i)
 							} else {
-								this.setState({ openStore: i })
+								if (this.state.openStore === i) {
+									this.setState({ openStore: -1 })
+								} else {
+									this.setState({ openStore: i })
+								}
 							}
 						}}
 					/>
 				))}
 				{!this.props.prospective && (
 					<div className="newStore">
-						<Button type="clear" onClick={this.props.onNewLoan}>
+						<Button type="clear" onClick={this.props.onNewStore}>
 							+ new store
 						</Button>
 					</div>

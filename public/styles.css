@@ -169,15 +169,17 @@ h4 {
 }
 
 .storeList {
+  margin-left: 1em;
   grid-column: 3/4;
   grid-row: 3/4;
 }
 .storeList .store {
+  margin-bottom: 1em;
   padding: 1em;
   grid-column: 3/4;
   grid-row: 4/5;
   border: 2px solid #000;
-  height: 5em;
+  height: 3em;
   overflow-y: hidden;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.13);
 }

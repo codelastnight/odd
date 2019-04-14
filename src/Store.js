@@ -12,7 +12,10 @@ export default class Store extends Component {
 	render() {
 		return (
 			<div
-				className={'store' + (this.props.open ? ' expand' : '')}
+				className={
+					'store' +
+					(this.props.open && !this.props.prospective ? ' expand' : '')
+				}
 				onClick={this.props.toggleExpand}>
 				<div className="grid">
 					<div className="icon">

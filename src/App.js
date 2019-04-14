@@ -51,7 +51,7 @@ const generateStoreOption = () => {
 	)
 	revenue = revenue - (revenue % 100)
 
-	return { monthlyCost: cost, monthlyRevenue: revenue }
+	return { monthlyCost: cost, monthlyIncome: revenue }
 }
 
 const calculateCreditScore = creditReport => {
@@ -99,13 +99,12 @@ class App extends Component {
 			},
 			location: 0,
 			month: 0, // time counter,
-			storeOptions: [
-				/* { monthlyCost, monthlyIncome } */
-			],
+			storeOptions: Array.from({ length: 5 }, () => generateStoreOption()),
 			loanOptions: [
 				// { termLength, APR, imgURL }
 			],
-			isNewLoanModalOpen: false
+			isNewLoanModalOpen: false,
+			isNewStoreModalOpen: false
 		}
 	}
 
@@ -129,7 +128,8 @@ class App extends Component {
 		// buys store indexed as i in the storeOptions array
 		if (this.state.balance < this.state.storeOptions[i].monthlyCost) return
 
-		let newBalance = this.state.balance - this.state.storeOptions[i].monthlyCost
+		let newPaymentDue =
+			this.state.paymentDue + this.state.storeOptions[i].monthlyCost
 
 		let newStoreOptions = this.state.storeOptions.slice()
 		let newStores = this.state.stores
@@ -137,9 +137,10 @@ class App extends Component {
 			.concat(newStoreOptions.splice(i, 1)[0])
 
 		this.setState({
-			balance: newBalance,
+			paymentDue: newPaymentDue,
 			storeOptions: newStoreOptions,
-			stores: newStores
+			stores: newStores,
+			isNewStoreModalOpen: false
 		})
 	}
 
@@ -218,6 +219,14 @@ class App extends Component {
 		this.setState({ isNewLoanModalOpen: false })
 	}
 
+	openNewStoreModal = async () => {
+		this.setState({ isNewStoreModalOpen: true })
+	}
+
+	closeNewStoreModal = () => {
+		this.setState({ isNewStoreModalOpen: false })
+	}
+
 	render() {
 		return (
 			<div className="App">
@@ -249,6 +258,18 @@ class App extends Component {
 						})}
 					/>
 				</Modal>
+				<Modal
+					isOpen={this.state.isNewStoreModalOpen}
+					onRequestClose={this.closeNewStoreModal}
+					style={customStyles}
+					contentLabel="New Store">
+					<h2>New Store</h2>
+					<StoreList
+						onNewStore={this.buyStore}
+						prospective={true}
+						stores={this.state.storeOptions}
+					/>
+				</Modal>
 				<Header
 					creditScore={calculateCreditScore(this.state.creditReport)}
 					balance={this.state.balance}
@@ -261,7 +282,7 @@ class App extends Component {
 				<LoanList loans={this.state.loans} onNewLoan={this.openNewLoanModal} />
 				<StoreList
 					stores={this.state.stores}
-					onNewLoan={this.openNewStoreModal}
+					onNewStore={this.openNewStoreModal}
 				/>
 			</div>
 		)
