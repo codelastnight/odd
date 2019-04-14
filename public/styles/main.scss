@@ -1,7 +1,8 @@
 //normalize css
 @import 'node_modules/modern-normalize/modern-normalize.css';
 //import variables and main
-@import "variables";
-@import "body";
-@import "typography";
+@import 'variables';
+@import 'body';
+@import 'typography';
 // rest of the code
+@import 'buttons';
