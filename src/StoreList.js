@@ -19,7 +19,7 @@ export default class StoreList extends Component {
 	render() {
 		return (
 			<div className="storeList">
-				{this.props.prospective && <h1>My Properties</h1>}
+				{!this.props.prospective && <h1>My Properties</h1>}
 				{this.props.stores.map((s, i) => (
 					<Store
 						prospective={this.props.prospective}

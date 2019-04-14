@@ -29,8 +29,8 @@ export default class Loan extends Component {
 				</div>
 				{!this.props.prospective && (
 					<div className="pay">
-						<Button type="link" onClick={this.props.onPayLoan}>
-							Pay Loan
+						<Button type="link red" onClick={this.props.onPayLoan}>
+							Dont Pay Loan
 						</Button>
 					</div>
 				)}

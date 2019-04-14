@@ -12,7 +12,7 @@ export default class LoanList extends Component {
 		return (
 			<div
 				className={'loanList' + (this.props.prospective ? ' prospective' : '')}>
-				{this.props.prospective && <h1>Current Loans</h1>}
+				{!this.props.prospective && <h1>Current Loans</h1>}
 				{this.props.loans.map((l, i) => {
 					return (
 						<Loan
