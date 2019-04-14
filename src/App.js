@@ -19,8 +19,8 @@ const getRandomZipCode = location => {
 	}
 }
 
-const monthlyPaymentOfLoan = (APR, amountOwed) => {
-	let n = 120 // 120 payments total
+const monthlyPaymentOfLoan = (termLength, APR, amountOwed) => {
+	let n = termLength
 	let i = APR / 100 / 12
 	let d = ((i + 1) ** n - 1) / (i * (i + 1) ** n)
 
@@ -72,7 +72,7 @@ class App extends Component {
 			balance: (Math.floor(Math.random() * 11) + 5) * 1000, // in dollars, random between 5k and 15k
 			paymentDue: 0,
 			loans: [
-				/* { startTime, monthlyPayment, minDue } */
+				/* { startTime, termLength, monthlyPayment, minDue, APR } */
 			],
 			monthlyRevenue: 0,
 			stores: [{ monthlyCost: 2000, monthlyIncome: 8000 }],
@@ -90,14 +90,16 @@ class App extends Component {
 		}
 	}
 
-	takeOutLoan = (APR, amountOwed) => {
+	takeOutLoan = (APR, amountOwed, termLength) => {
 		let newLoans = this.state.loans.slice().concat({
 			startTime: this.state.month,
-			monthlyPayment: monthlyPaymentOfLoan(APR, amountOwed),
-			minDue: monthlyPaymentOfLoan(APR, amountOwed)
+			monthlyPayment: monthlyPaymentOfLoan(termLength, APR, amountOwed),
+			minDue: monthlyPaymentOfLoan(termLength, APR, amountOwed),
+			termLength,
+			APR
 		})
 
-		this.setState({ loans: newLoans })
+		this.setState({ loans: newLoans, balance: this.state.balance + amountOwed })
 	}
 
 	buyStore = i => {
@@ -134,7 +136,10 @@ class App extends Component {
 		let newLoans = this.state.loans.slice()
 
 		for (let i = newLoans.length - 1; i >= 0; i--) {
-			if (newMonth - newLoans[i].startTime >= 10 && newLoans[i].minDue === 0) {
+			if (
+				newMonth - newLoans[i].startTime >= newLoans[i].termLength &&
+				newLoans[i].minDue === 0
+			) {
 				newLoans.splice(i, 1)
 			}
 		}
