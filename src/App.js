@@ -145,7 +145,7 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<Button type="meme">text</Button>
+				{/* <Button type="meme" onClick={}>text</Button> */}
 			</div>
 		)
 	}

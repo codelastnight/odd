@@ -1,3 +1,8 @@
 @import 'node_modules/modern-normalize/modern-normalize.css';
+.App {
+  display: grid;
+  grid-template-columns: 20vh auto 20vh;
+  grid-template-rows: 20vh auto;
+}
 
 /*# sourceMappingURL=styles.css.map */
