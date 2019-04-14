@@ -12,9 +12,13 @@
 	}
 }
 .clear {
-	-webkit-text-stroke-width: 2px;
+	-webkit-text-stroke-width:1.5px;
 	-webkit-text-stroke-color: #000;
 	font-family: 'Montserrat';
 	font-weight: 800;
 	color: transparent;
+  background: transparent;
+  font-size: 24px;
+  border: none;
+  letter-spacing: -1px;
 }
