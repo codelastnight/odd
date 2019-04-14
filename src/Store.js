@@ -31,7 +31,9 @@ export default class Store extends Component {
 					<h1 className="Name">Store {this.props.index}</h1>
 					<div className="info">a</div>
 					<div className="Actions">
-						<Button type="link">Close Store</Button>
+						<Button onClick={this.props.close} type="link">
+							Close Store
+						</Button>
 						<Button type="link">Upgrade</Button>
 					</div>
 					<div className="stats">

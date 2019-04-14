@@ -266,8 +266,14 @@ class App extends Component {
 			calculateCreditScore(this.state.creditReport)
 		)
 		let { loanOffers } = await res.json()
-		loanOffers = loanOffers.slice(0, 3)
-		this.setState({ isNewLoanModalOpen: true, loanOptions: loanOffers })
+		let loanOptions = []
+
+		for (let i = 0; i < 3; i++) {
+			loanOptions.push(
+				loanOffers.splice(Math.floor(Math.random() * loanOffers.length), 1)[0]
+			)
+		}
+		this.setState({ isNewLoanModalOpen: true, loanOptions })
 	}
 
 	closeNewLoanModal = () => {
@@ -338,6 +344,7 @@ class App extends Component {
 				<StoreList
 					stores={this.state.stores}
 					onNewStore={this.openNewStoreModal}
+					closeStore={this.closeStore}
 				/>
 
 				<NotifList notifs={this.state.notifs} />
