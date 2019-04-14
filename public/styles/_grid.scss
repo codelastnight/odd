@@ -31,69 +31,70 @@
 			place-self: center;
 		}
 	}
-	.loanList {
-		grid-column: 2/3;
+	.notifs {
+		grid-column: 4/5;
 		grid-row: 3/4;
-		.newLoan {
-			padding-top: 1em;
-		}
-		.loan {
-			border: 2px solid #000;
-			box-shadow: $dropShadow;
-			display: grid;
-			grid-template-columns: auto 35%;
-			grid-template-rows: 2fr 1fr;
-			.loanImg {
-				grid-column: 1/2;
-				grid-row: 1/3;
-
-				img {
-					max-width: 100%;
-				}
-			}
-			.info {
-				text-align: center;
-				place-self: center;
-				grid-column: 2/3;
-				grid-row: 1/2;
-			}
-			.pay {
-				place-self: center;
-				grid-column: 2/3;
-				grid-row: 2/3;
-			}
-		}
 	}
-	.stores {
+}
+
+.loanList {
+	grid-column: 2/3;
+	grid-row: 3/4;
+	.newLoan {
+		padding-top: 1em;
+	}
+	.loan {
 		border: 2px solid #000;
 		box-shadow: $dropShadow;
-		grid-column: 3/4;
-		grid-row: 4/5;
-		grid-template-columns: 20% auto 20%;
-		grid-template-rows: 20% auto 20%;
-		.storeIMG {
+		display: grid;
+		grid-template-columns: auto 35%;
+		grid-template-rows: 2fr 1fr;
+		.loanImg {
 			grid-column: 1/2;
-			grid-row: 1/2;
+			grid-row: 1/3;
+
+			img {
+				max-width: 100%;
+			}
 		}
-		.title {
+		.info {
+			text-align: center;
+			place-self: center;
 			grid-column: 2/3;
 			grid-row: 1/2;
 		}
-		.revenue {
-			grid-column: 3/4;
-			grid-row: 1/2;
-		}
-		.info {
-			grid-column: 1/4;
+		.pay {
+			place-self: center;
+			grid-column: 2/3;
 			grid-row: 2/3;
 		}
-		.buttons {
-			grid-column: 1/2;
-			grid-row: 3/4;
-		}
 	}
-	.notifs {
-		grid-column: 4/5;
+}
+.stores {
+	border: 2px solid #000;
+	box-shadow: $dropShadow;
+	grid-column: 3/4;
+	grid-row: 4/5;
+	grid-template-columns: 20% auto 20%;
+	grid-template-rows: 20% auto 20%;
+	.storeIMG {
+		grid-column: 1/2;
+		grid-row: 1/2;
+	}
+	.title {
+		grid-column: 2/3;
+		grid-row: 1/2;
+	}
+	.revenue {
+		grid-column: 3/4;
+		grid-row: 1/2;
+	}
+	.info {
+		grid-column: 1/4;
+		grid-row: 2/3;
+	}
+	.buttons {
+		grid-column: 1/2;
 		grid-row: 3/4;
 	}
 }
