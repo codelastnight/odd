@@ -13,7 +13,11 @@ const customStyles = {
 		right: 'auto',
 		bottom: 'auto',
 		marginRight: '-50%',
-		transform: 'translate(-50%, -50%)'
+		transform: 'translate(-50%, -50%)',
+		borderRadius: '0',
+		borderWidth: '2px',
+		borderColor: '#000',
+		backgroundColor: '#fff'
 	}
 }
 
