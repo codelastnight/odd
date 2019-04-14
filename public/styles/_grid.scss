@@ -94,31 +94,48 @@
 		}
 	}
 }
-.stores {
-	border: 2px solid #000;
-	box-shadow: $dropShadow;
+
+.storeList {
 	grid-column: 3/4;
-	grid-row: 4/5;
-	grid-template-columns: 20% auto 20%;
-	grid-template-rows: 20% auto 20%;
-	.storeIMG {
-		grid-column: 1/2;
-		grid-row: 1/2;
-	}
-	.title {
-		grid-column: 2/3;
-		grid-row: 1/2;
-	}
-	.revenue {
+	grid-row: 3/4;
+	.store {
+		padding: 1em;
 		grid-column: 3/4;
-		grid-row: 1/2;
-	}
-	.info {
-		grid-column: 1/4;
-		grid-row: 2/3;
-	}
-	.buttons {
-		grid-column: 1/2;
-		grid-row: 3/4;
+		grid-row: 4/5;
+		border: 2px solid #000;
+		height: 5em;
+		overflow-y: hidden;
+		box-shadow: $dropShadow;
+		&.expand {
+			height: 15em;
+		}
+		.grid {
+			display: grid;
+			grid-template-columns: 4em 1fr 20%;
+			grid-template-rows: 20% auto 20%;
+			min-height: 15em;
+			height: auto;
+			align-items: center;
+			.icon {
+				grid-column: 1/2;
+				grid-row: 1/2;
+			}
+			.Name {
+				grid-column: 2/3;
+				grid-row: 1/2;
+			}
+			.stats {
+				grid-column: 3/4;
+				grid-row: 1/2;
+			}
+			.info {
+				grid-column: 2/4;
+				grid-row: 2/3;
+			}
+			.Actions {
+				grid-column: 2/3;
+				grid-row: 3/4;
+			}
+		}
 	}
 }
