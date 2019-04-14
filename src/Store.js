@@ -11,7 +11,9 @@ import Building from './images/level_1.png'
 export default class Store extends Component {
 	render() {
 		return (
-			<div className="store">
+			<div
+				className={'store' + (this.props.open ? ' expand' : '')}
+				onClick={this.props.toggleExpand}>
 				<div className="grid">
 					<div className="icon">
 						<img src={Building} alt="building" />

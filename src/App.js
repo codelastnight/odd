@@ -87,7 +87,7 @@ class App extends Component {
 			balance: (Math.floor(Math.random() * 11) + 5) * 1000, // in dollars, random between 5k and 15k
 			paymentDue: 2000, // payment due for THIS month
 			loans: [
-				/* { startTime, termLength, monthlyPayment, minDue, APR, imgURL } */
+				/* { startTime, termLength, monthlyPayment, APR, imgURL } */
 			],
 			monthlyRevenue: 8000, // money that will be earned by NEXT month
 			stores: [{ monthlyCost: 2000, monthlyIncome: 8000 }],
@@ -109,33 +109,10 @@ class App extends Component {
 		}
 	}
 
-	payLoan = i => {
-		let newLoans = this.state.loans.slice()
-		let newBalance = this.state.balance - newLoans[i].minDue
-
-		if (newBalance < 0) return
-		let newPaymentDue = this.state.paymentDue - newLoans[i].minDue
-
-		newLoans[i].minDue = 0
-
-		this.setState({
-			loans: newLoans,
-			balance: newBalance,
-			paymentDue: newPaymentDue
-		})
-	}
-
-	payAllLoans = () => {
-		for (let i = 0; i < this.state.loans.length; i++) {
-			this.payLoan(i)
-		}
-	}
-
 	takeOutLoan = (APR, amountOwed, termLength, imgURL) => {
 		let newLoans = this.state.loans.slice().concat({
 			startTime: this.state.month,
 			monthlyPayment: monthlyPaymentOfLoan(termLength, APR, amountOwed),
-			minDue: 0,
 			termLength,
 			APR,
 			imgURL
@@ -184,7 +161,8 @@ class App extends Component {
 		let newStoreOptions = Array.from({ length: 5 }, () => generateStoreOption())
 
 		// add monthlyRevenue to balance
-		let newBalance = this.state.balance + this.state.monthlyRevenue
+		let newBalance =
+			this.state.balance - this.state.paymentDue + this.state.monthlyRevenue
 
 		// update credit report
 		let newCreditReport = this.state.creditReport
@@ -193,25 +171,19 @@ class App extends Component {
 		let newLoans = this.state.loans.slice()
 
 		for (let i = newLoans.length - 1; i >= 0; i--) {
-			if (
-				newMonth - newLoans[i].startTime >= newLoans[i].termLength &&
-				newLoans[i].minDue === 0
-			) {
+			if (newMonth - newLoans[i].startTime >= newLoans[i].termLength) {
 				newLoans.splice(i, 1)
 			}
 		}
 
 		newLoans.forEach(l => {
-			if (l.minDue > 0) newCreditReport.missedPayments++
-			else newCreditReport.onTimePayments++
-
-			l.minDue += l.monthlyPayment
+			newCreditReport.onTimePayments++
 		})
 
 		// adjust paymentdue
 		let newPaymentDue =
 			this.state.stores.reduce((a, c) => a + c.monthlyCost, 0) +
-			newLoans.reduce((a, c) => a + c.minDue, 0)
+			newLoans.reduce((a, c) => a + c.monthlyPayment, 0)
 
 		// update credit report
 		newCreditReport.numberOfAccounts = newLoans.length

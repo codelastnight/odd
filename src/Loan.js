@@ -5,7 +5,6 @@ import Button from './Button.js'
  *      monthlyPayment: Number,
  * 		termLength: Number, // in months
  * 		startTime: Number, // month at which this loan was taken out
- * 		minDue: Number, // what's due in the next payment
  * 		APR: Number, // annual percentage rate
  *      imgURL: String,
  * 		onPayLoan: function
