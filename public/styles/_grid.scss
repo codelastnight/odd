@@ -6,6 +6,20 @@
 .header {
   grid-column: 0/3;
   grid-row: 0/1;
+  display: flex;
+  flex-direction: row;
+  .profile {
+    align-self: flex-start;
+  }
+  .info {
+    align-self: flex-start;
+  }
+  .month {
+    align-self: flex-end;
+  }
+  .next {
+    align-self: flex-end;
+  }
 }
 .loans {
   grid-column: 0/1;
