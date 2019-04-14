@@ -1,9 +1,14 @@
 .fill {
   border: 2px solid #000;
-  padding-top: 1em 2em 1em 2em;
+  padding: 1em 2em 1em 2em;
   background: transparent;
+  font-family: "Montserrat";
+  font-weight: 800;
 }
 .clear {
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: #000;
+  font-family: "Montserrat";
+  font-weight: 800;
+  color: transparent;
 }
