@@ -23,7 +23,7 @@ export default class LoanList extends Component {
 						/>
 					)
 				})}
-				<Button type="clear" onClick={this.props.onPayLoan}>
+				<Button type="clear" onClick={this.props.onNewLoan}>
 					+ new loan
 				</Button>
 			</div>

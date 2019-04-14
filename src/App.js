@@ -2,6 +2,21 @@ import React, { Component } from 'react'
 import Button from './Button'
 import Header from './Header'
 import LoanList from './LoanList'
+import Modal from 'react-modal'
+import { getLoans } from './even'
+import Loan from './Loan'
+
+const customStyles = {
+	content: {
+		top: '50%',
+		left: '50%',
+		right: 'auto',
+		bottom: 'auto',
+		marginRight: '-50%',
+		transform: 'translate(-50%, -50%)'
+	}
+}
+
 const getRandomZipCode = location => {
 	switch (location) {
 		case 2:
@@ -24,7 +39,7 @@ const monthlyPaymentOfLoan = (termLength, APR, amountOwed) => {
 	let i = APR / 100 / 12
 	let d = ((i + 1) ** n - 1) / (i * (i + 1) ** n)
 
-	return amountOwed / d
+	return (amountOwed / d).toFixed(2)
 }
 
 const generateStoreOption = () => {
@@ -93,7 +108,11 @@ class App extends Component {
 			month: 0, // time counter,
 			storeOptions: [
 				/* { monthlyCost, monthlyIncome } */
-			]
+			],
+			loanOptions: [
+				// { termLength, APR, imgURL }
+			],
+			isNewLoanModalOpen: false
 		}
 	}
 
@@ -213,11 +232,47 @@ class App extends Component {
 		})
 	}
 
-	openNewLoanModal = () => {}
+	openNewLoanModal = async () => {
+		let res = await getLoans(
+			this.state.monthlyRevenue,
+			calculateCreditScore(this.state.creditReport)
+		)
+		let { loanOffers } = await res.json()
+		loanOffers = loanOffers.slice(0, 3)
+		this.setState({ isNewLoanModalOpen: true, loanOptions: loanOffers })
+	}
+
+	closeNewLoanModal = () => {
+		this.setState({ isNewLoanModalOpen: false })
+	}
 
 	render() {
 		return (
 			<div className="App">
+				<Modal
+					isOpen={this.state.isNewLoanModalOpen}
+					onRequestClose={this.closeNewLoanModal}
+					style={customStyles}
+					contentLabel="New Loan">
+					<h2>New Loan</h2>
+					{this.state.loanOptions.map(l => {
+						if (l.termUnit === 'year') {
+							l.termLength *= 12
+						} else if (l.termUnit === 'day') {
+							l.termLength = Math.round(l.termLength / 30)
+						}
+
+						let APR = l.meanApr
+						let amount = l.maxAmount
+
+						return (
+							<Loan
+								termLength={l.termLength}
+								monthlyPayment={monthlyPaymentOfLoan(l.termLength, APR, amount)}
+							/>
+						)
+					})}
+				</Modal>
 				<Header
 					creditScore={700}
 					balance={7000}
@@ -226,7 +281,6 @@ class App extends Component {
 					month={6}
 				/>
 				<LoanList loans={this.state.loans} onNewLoan={this.openNewLoanModal} />
-				{/* <Button type="meme" onClick={}>text</Button> */}
 			</div>
 		)
 	}
