@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Button from './Button'
 
 const getRandomZipCode = location => {
 	switch (location) {
@@ -142,7 +143,11 @@ class App extends Component {
 	}
 
 	render() {
-		return <div className="App" />
+		return (
+			<div className="App">
+				<Button type="meme">text</Button>
+			</div>
+		)
 	}
 }
 
