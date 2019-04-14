@@ -41,7 +41,6 @@
 	&.prospective {
 		overflow-y: scroll;
 		.loan {
-			margin-bottom: 1em;
 			padding: 1em;
 			margin-left: 2em;
 			margin-right: 2em;
@@ -55,6 +54,7 @@
 
 	grid-column: 2/3;
 	grid-row: 3/4;
+
 	.newLoan {
 		padding-top: 1em;
 	}
@@ -64,6 +64,7 @@
 		display: grid;
 		grid-template-columns: auto 35%;
 		grid-template-rows: 2fr 1fr;
+		margin-bottom: 1em;
 
 		.loanImg {
 			grid-column: 1/2;

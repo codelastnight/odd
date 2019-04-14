@@ -88,14 +88,6 @@ class App extends Component {
 			paymentDue: 0, // payment due for THIS month
 			loans: [
 				/* { startTime, termLength, monthlyPayment, minDue, APR, imgURL } */
-				{
-					startTime: 10,
-					termLength: 36,
-					monthlyPayment: 400,
-					minDue: 400,
-					APR: 5,
-					imgURL: 'https://lt-scorecard-logo.s3.amazonaws.com/55751583SEO.gif'
-				}
 			],
 			monthlyRevenue: 0, // money that will be earned by NEXT month
 			stores: [{ monthlyCost: 2000, monthlyIncome: 8000 }],
@@ -149,7 +141,11 @@ class App extends Component {
 			imgURL
 		})
 
-		this.setState({ loans: newLoans, balance: this.state.balance + amountOwed })
+		this.setState({
+			loans: newLoans,
+			balance: this.state.balance + amountOwed,
+			isNewLoanModalOpen: false
+		})
 	}
 
 	buyStore = i => {
@@ -257,6 +253,7 @@ class App extends Component {
 					contentLabel="New Loan">
 					<h2>New Loan</h2>
 					<LoanList
+						onNewLoan={this.takeOutLoan}
 						prospective={true}
 						loans={this.state.loanOptions.map(l => {
 							if (l.termUnit === 'year') {
@@ -266,6 +263,11 @@ class App extends Component {
 							}
 
 							l.APR = l.meanApr
+							l.monthlyPayment = monthlyPaymentOfLoan(
+								l.termLength,
+								l.APR,
+								l.maxAmount
+							)
 							l.imgURL = 'https://' + l.originator.images[0].url
 
 							return l

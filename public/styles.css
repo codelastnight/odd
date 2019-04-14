@@ -125,7 +125,6 @@ h4 {
   overflow-y: scroll;
 }
 .loanList.prospective .loan {
-  margin-bottom: 1em;
   padding: 1em;
   margin-left: 2em;
   margin-right: 2em;
@@ -144,6 +143,7 @@ h4 {
   display: grid;
   grid-template-columns: auto 35%;
   grid-template-rows: 2fr 1fr;
+  margin-bottom: 1em;
 }
 .loanList .loan .loanImg {
   grid-column: 1/2;

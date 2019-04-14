@@ -12,16 +12,18 @@ export default class LoanList extends Component {
 		return (
 			<div
 				className={'loanList' + (this.props.prospective ? ' prospective' : '')}>
-				{this.props.loans.map(l => {
+				{this.props.loans.map((l, i) => {
 					return (
 						<Loan
 							prospective={this.props.prospective}
 							monthlyPayment={l.monthlyPayment}
 							termLength={l.termLength}
-							startTime={l.startTime}
-							minDue={l.minDue}
 							APR={l.APR}
 							imgURL={l.imgURL}
+							amount={l.maxAmount}
+							onClick={() => {
+								this.props.onNewLoan(l.APR, l.maxAmount, l.termLength, l.imgURL)
+							}}
 						/>
 					)
 				})}
