@@ -38,7 +38,7 @@ export default class Header extends Component {
 						<h3>Credit Score: {this.props.creditScore}</h3>
 						<h3>Current Balance: {this.props.balance.toFixed(2)}</h3>
 						<h3>Payment Due: {this.props.paymentDue.toFixed(2)}</h3>
-						<h3>Total Revenue: ~{this.props.totalRevenue.toFixed(2)}</h3>
+						<h3>Total Revenue: {this.props.totalRevenue.toFixed(2)} +/- 10%</h3>
 					</div>
 				</div>
 				<div className="month">
