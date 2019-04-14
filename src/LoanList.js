@@ -23,11 +23,14 @@ export default class LoanList extends Component {
 						/>
 					)
 				})}
-				<div className="newLoan">
-					<Button type="clear" onClick={this.props.onNewLoan}>
-						+ new loan
-					</Button>
-				</div>
+
+				{!this.props.prospective && (
+					<div className="newLoan">
+						<Button type="clear" onClick={this.props.onNewLoan}>
+							+ new loan
+						</Button>
+					</div>
+				)}
 			</div>
 		)
 	}

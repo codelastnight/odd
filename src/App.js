@@ -257,6 +257,7 @@ class App extends Component {
 					contentLabel="New Loan">
 					<h2>New Loan</h2>
 					<LoanList
+						prospective={true}
 						loans={this.state.loanOptions.map(l => {
 							if (l.termUnit === 'year') {
 								l.termLength *= 12
