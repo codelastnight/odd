@@ -28,7 +28,7 @@ export default class Store extends Component {
 					<div className="icon">
 						<img src={image} alt="building" />
 					</div>
-					<h1 className="Name">Name</h1>
+					<h1 className="Name">Store {this.props.index}</h1>
 					<div className="info">a</div>
 					<div className="Actions">
 						<Button type="link">Delete Store</Button>
