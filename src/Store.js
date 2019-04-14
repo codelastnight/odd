@@ -8,6 +8,6 @@ import React, { Component } from 'react'
  */
 export default class Store extends Component {
 	render() {
-		return <div className="store" />
+		return <div className="store" >
 	}
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Button from './Button.js'
+import Profile from './images/pfp1.png'
 /**
  * props: {
  *      creditScore: Number,
@@ -30,9 +31,7 @@ export default class Header extends Component {
 	render() {
 		return (
 			<div className="header">
-				<div className="profile">
-					<img src="../public/images/pfp1.png" alt="pee" />
-				</div>
+				<div className="profile">{/* <img src={Profile} alt="pee" /> */}</div>
 				<div className="info">
 					<h1 className="name">Stevejobert B. JR IV </h1>
 					<div className="stats">
@@ -46,9 +45,11 @@ export default class Header extends Component {
 					<h3>Year {Math.floor(this.props.month / 12)}</h3>
 					<p>{monthNames[this.props.month % 12]}</p>
 				</div>
-				<Button type="fill" onClick={this.props.onNextMonth}>
-					Next Month
-				</Button>
+				<div>
+					<Button type="fill" onClick={this.props.onNextMonth}>
+						Next Month
+					</Button>
+				</div>
 			</div>
 		)
 	}
