@@ -120,6 +120,17 @@ class App extends Component {
 		})
 	}
 
+	closeStore = i => {
+		// closes store indexed as i in the stores array
+		let newStores = this.state.stores.slice()
+		let removedStore = newStores.splice(i, 1)[0]
+
+		let newMonthlyRevenue =
+			this.state.monthlyRevenue - removedStore.monthlyIncome
+
+		this.setState({ stores: newStores, monthlyRevenue: newMonthlyRevenue })
+	}
+
 	nextMonth = () => {
 		let newMonth = this.state.month + 1
 
