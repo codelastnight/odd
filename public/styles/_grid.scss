@@ -36,6 +36,7 @@
 		grid-row: 3/4;
 
 		.loan {
+      border: 2px solid #000;
 			display: grid;
 			grid-template-columns: auto 25%;
 			grid-template-rows: 2fr 1fr;
@@ -54,6 +55,7 @@
 		}
 	}
 	.stores {
+    border: 2px solid #000;
 		grid-column: 3/4;
 		grid-row: 4/5;
 		grid-template-columns: 20% auto 20%;
