@@ -246,7 +246,11 @@ h4 {
   grid-row: 3/4;
 }
 
-.notifBox {
+.notifList {
+  grid-column: 4/5;
+  grid-row: 3/4;
+}
+.notifList .notifBox {
   margin-bottom: 1em;
   padding: 1em;
   border: 2px solid #000;

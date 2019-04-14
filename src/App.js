@@ -5,6 +5,7 @@ import LoanList from './LoanList'
 import Modal from 'react-modal'
 import { getLoans } from './even'
 import StoreList from './StoreList'
+import NotifList from './NotifList'
 
 const customStyles = {
 	content: {
@@ -101,7 +102,8 @@ class App extends Component {
 				// { termLength, APR, imgURL }
 			],
 			isNewLoanModalOpen: false,
-			isNewStoreModalOpen: false
+			isNewStoreModalOpen: false,
+			notifs: []
 		}
 	}
 
@@ -165,6 +167,14 @@ class App extends Component {
 		let recession = Math.random() < 1 / 120
 		let contraction = Math.random() < 1 / 12
 
+		if (recession || contraction) {
+			this.setState({
+				notifs: this.state.notifs
+					.slice()
+					.concat('Oopsie woopsie! The economy crashed!')
+			})
+		}
+
 		let newMonth = this.state.month + 1
 
 		// generate 5 new store options
@@ -172,7 +182,9 @@ class App extends Component {
 
 		// add monthlyRevenue to balance
 		let revMult = Math.random() * 0.2 + 0.9
-		console.log(revMult)
+		if (recession) revMult /= 2
+		if (contraction) revMult *= 0.8
+
 		let newBalance =
 			this.state.balance -
 			this.state.paymentDue +
@@ -297,6 +309,8 @@ class App extends Component {
 					stores={this.state.stores}
 					onNewStore={this.openNewStoreModal}
 				/>
+
+				<NotifList notifs={this.state.notifs} />
 			</div>
 		)
 	}
