@@ -184,6 +184,9 @@ h4 {
   grid-column: 3/4;
   grid-row: 3/4;
 }
+.storeList .newStore {
+  padding-top: 1em;
+}
 .storeList .store {
   margin-bottom: 1em;
   padding: 1em;
