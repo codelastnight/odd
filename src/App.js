@@ -159,8 +159,12 @@ class App extends Component {
 		let newStoreOptions = Array.from({ length: 5 }, () => generateStoreOption())
 
 		// add monthlyRevenue to balance
+		let revMult = Math.random() * 0.2 + 0.9
+		console.log(revMult)
 		let newBalance =
-			this.state.balance - this.state.paymentDue + this.state.monthlyRevenue
+			this.state.balance -
+			this.state.paymentDue +
+			this.state.monthlyRevenue * revMult
 
 		// update credit report
 		let newCreditReport = this.state.creditReport
