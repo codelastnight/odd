@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Loan from './Loan'
-
+import Button from './Button.js'
 /**
  * props: {
  *      loans: [Loan],
@@ -10,7 +10,7 @@ import Loan from './Loan'
 export default class LoanList extends Component {
 	render() {
 		return (
-			<div className="loan-list">
+			<div className="loanList">
 				{this.props.loans.map(l => {
 					return (
 						<Loan
@@ -23,6 +23,9 @@ export default class LoanList extends Component {
 						/>
 					)
 				})}
+				<Button type="clear" onClick={this.props.onPayLoan}>
+					+ new loan
+				</Button>
 			</div>
 		)
 	}

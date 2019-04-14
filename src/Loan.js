@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import Button from './Button.js'
 /**
  * props: {
  *      monthlyPayment: Number,
@@ -8,6 +8,8 @@ import React, { Component } from 'react'
  * 		minDue: Number, // what's due in the next payment
  * 		APR: Number, // annual percentage rate
  *      imgURL: String,
+ * 		onPayLoan: function
+ *
  * }
  */
 export default class Loan extends Component {
@@ -22,6 +24,11 @@ export default class Loan extends Component {
 					<h4>
 						{this.props.termLength} APR: {this.props.APR}
 					</h4>
+				</div>
+				<div className="pay">
+					<Button type="link" onClick={this.props.onPayLoan}>
+						Pay Loan
+					</Button>
 				</div>
 			</div>
 		)

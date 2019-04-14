@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Button from './Button'
 import Header from './Header'
-
+import LoanList from './LoanList'
 const getRandomZipCode = location => {
 	switch (location) {
 		case 2:
@@ -73,6 +73,13 @@ class App extends Component {
 			paymentDue: 0, // payment due for THIS month
 			loans: [
 				/* { startTime, termLength, monthlyPayment, minDue, APR, imgURL } */
+				{
+					startTime: 10,
+					termLength: 36,
+					monthlyPayment: 400,
+					minDue: 400,
+					APR: 5
+				}
 			],
 			monthlyRevenue: 0, // money that will be earned by NEXT month
 			stores: [{ monthlyCost: 2000, monthlyIncome: 8000 }],
@@ -216,6 +223,7 @@ class App extends Component {
 					totalRevenue={600}
 					month={6}
 				/>
+				<LoanList loans={this.state.loans} />
 				{/* <Button type="meme" onClick={}>text</Button> */}
 			</div>
 		)

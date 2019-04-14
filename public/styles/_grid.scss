@@ -31,18 +31,33 @@
 			place-self: center;
 		}
 	}
-	.loans {
+	.loanList {
 		grid-column: 2/3;
 		grid-row: 3/4;
-    display: grid;
-		grid-template-columns: auto 25%;
-    grid-template-rows: 1fr 1fr;
+
+		.loan {
+			display: grid;
+			grid-template-columns: auto 25%;
+			grid-template-rows: 2fr 1fr;
+			.loanIMG {
+				grid-column: 1/2;
+				grid-row: 1/3;
+			}
+			.info {
+				grid-column: 2/3;
+				grid-row: 1/2;
+			}
+			.pay {
+				grid-column: 2/3;
+				grid-row: 2/3;
+			}
+		}
 	}
 	.stores {
 		grid-column: 3/4;
 		grid-row: 4/5;
-    grid-template-columns: 20% auto 20%;
-    grid-template-rows: 20% auto 20%;
+		grid-template-columns: 20% auto 20%;
+		grid-template-rows: 20% auto 20%;
 	}
 	.notifs {
 		grid-column: 4/5;

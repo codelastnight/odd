@@ -14,7 +14,6 @@
 	}
 }
 .clear {
-	box-shadow: $dropShadow;
 	-webkit-text-stroke-width: 1.5px;
 	-webkit-text-stroke-color: #000;
 	font-family: 'Montserrat';
@@ -27,6 +26,5 @@
 }
 
 .link {
-  font-weight:800;
-  
+	font-weight: 800;
 }
