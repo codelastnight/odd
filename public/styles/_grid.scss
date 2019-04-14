@@ -16,9 +16,7 @@
 		grid-column: 2/3;
     .stats {
       display: flex;
-      h3 {
-        padding: 1em;
-      }
+      justify-content: space-between;
     }
 	}
 	.month {
