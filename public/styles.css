@@ -1,6 +1,11 @@
 @import 'node_modules/modern-normalize/modern-normalize.css';
 @import url("https://fonts.googleapis.com/css?family=Montserrat:500,700,800");
 body {
+  height: 100vh;
+  width: 100vw;
+}
+
+body {
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
 }
@@ -14,6 +19,41 @@ h1 {
   display: grid;
   grid-template-columns: 20vh auto 20vh;
   grid-template-rows: 20vh auto;
+  height: 100vh;
+}
+
+.header {
+  grid-column: 0/3;
+  grid-row: 0/1;
+  display: flex;
+  flex-direction: row;
+}
+.header .profile {
+  align-self: flex-start;
+}
+.header .info {
+  align-self: flex-start;
+}
+.header .month {
+  align-self: flex-end;
+}
+.header .next {
+  align-self: flex-end;
+}
+
+.loans {
+  grid-column: 0/1;
+  grid-row: 1/2;
+}
+
+.stores {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+.notifs {
+  grid-column: 2/3;
+  grid-row: 1/2;
 }
 
 /*# sourceMappingURL=styles.css.map */
