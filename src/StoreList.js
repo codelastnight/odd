@@ -26,6 +26,7 @@ export default class StoreList extends Component {
 						prospective={this.props.prospective}
 						monthlyCost={s.monthlyCost}
 						down={s.down}
+						close={() => this.props.closeStore(i)}
 						monthlyIncome={s.monthlyIncome}
 						open={this.state.openStore === i}
 						toggleExpand={() => {

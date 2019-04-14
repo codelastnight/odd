@@ -338,6 +338,7 @@ class App extends Component {
 				<StoreList
 					stores={this.state.stores}
 					onNewStore={this.openNewStoreModal}
+					closeStore={this.closeStore}
 				/>
 
 				<NotifList notifs={this.state.notifs} />
