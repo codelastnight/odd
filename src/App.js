@@ -248,7 +248,7 @@ class App extends Component {
 					onRequestClose={this.closeNewLoanModal}
 					style={customStyles}
 					contentLabel="New Loan">
-					<h2>New Loan</h2>
+					<h1>New Loan</h1>
 					<LoanList
 						onNewLoan={this.takeOutLoan}
 						prospective={true}
@@ -276,7 +276,7 @@ class App extends Component {
 					onRequestClose={this.closeNewStoreModal}
 					style={customStyles}
 					contentLabel="New Store">
-					<h2>New Store</h2>
+					<h1>New Store</h1>
 					<StoreList
 						onNewStore={this.buyStore}
 						prospective={true}

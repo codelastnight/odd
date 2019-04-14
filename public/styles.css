@@ -19,7 +19,8 @@ body {
 }
 
 .ReactModal__Overlay {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.4s;
 }
 
 body {
@@ -183,6 +184,7 @@ h4 {
   margin-left: 1em;
   grid-column: 3/4;
   grid-row: 3/4;
+  min-width: 50em;
 }
 .storeList .newStore {
   padding-top: 1em;

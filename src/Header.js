@@ -33,7 +33,7 @@ export default class Header extends Component {
 			<div className="header">
 				<div className="profile">{/* <img src={Profile} alt="pee" /> */}</div>
 				<div className="info">
-					<h1 className="name">Stevejobert B. JR IV </h1>
+					<h1 className="name">Stevejobert B. JR IV's business </h1>
 					<div className="stats">
 						<h3>Credit Score: {this.props.creditScore}</h3>
 						<h3>Current Balance: {this.props.balance.toFixed(2)}</h3>
