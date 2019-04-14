@@ -112,6 +112,7 @@
 
 .storeList {
 	margin-left: 1em;
+	margin-right: 1em;
 	grid-column: 3/4;
 	grid-row: 3/4;
 	min-width: 50em;
@@ -167,7 +168,6 @@
 }
 
 .notifList {
-	margin-left: 1em;
 	grid-column: 4/5;
 	grid-row: 3/4;
 	.notifBox {

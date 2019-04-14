@@ -32,7 +32,7 @@ export default class Store extends Component {
 					<div className="info">a</div>
 					<div className="Actions">
 						<Button onClick={this.props.close} type="link">
-							Delete Store
+							Close Store
 						</Button>
 						<Button type="link">Upgrade</Button>
 					</div>
