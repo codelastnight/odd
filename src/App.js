@@ -70,11 +70,11 @@ class App extends Component {
 		this.state = {
 			name: 'John Doe',
 			balance: (Math.floor(Math.random() * 11) + 5) * 1000, // in dollars, random between 5k and 15k
-			paymentDue: 0,
+			paymentDue: 0, // payment due for THIS month
 			loans: [
 				/* { startTime, termLength, monthlyPayment, minDue, APR } */
 			],
-			monthlyRevenue: 0,
+			monthlyRevenue: 0, // money that will be earned by NEXT month
 			stores: [{ monthlyCost: 2000, monthlyIncome: 8000 }],
 			creditReport: {
 				onTimePayments: 0,
@@ -87,6 +87,28 @@ class App extends Component {
 			storeOptions: [
 				/* { monthlyCost, monthlyIncome } */
 			]
+		}
+	}
+
+	payLoan = i => {
+		let newLoans = this.state.loans.slice()
+		let newBalance = this.state.balance - newLoans[i].minDue
+
+		if (newBalance < 0) return
+		let newPaymentDue = this.state.paymentDue - newLoans[i].minDue
+
+		newLoans[i].minDue = 0
+
+		this.setState({
+			loans: newLoans,
+			balance: newBalance,
+			paymentDue: newPaymentDue
+		})
+	}
+
+	payAllLoans = () => {
+		for (let i = 0; i < this.state.loans.length; i++) {
+			this.payLoan(i)
 		}
 	}
 
