@@ -213,13 +213,14 @@ class App extends Component {
 			this.state.stores.reduce((a, c) => a + c.monthlyCost, 0) +
 			newLoans.reduce((a, c) => a + c.minDue, 0)
 
-		console.log(newLoans)
-
 		// update credit report
 		newCreditReport.numberOfAccounts = newLoans.length
-		newCreditReport.avgAge =
-			newLoans.reduce((a, c) => a + (newMonth - c.startTime), 0) /
-			newCreditReport.numberOfAccounts
+
+		if (newCreditReport.numberOfAccounts === 0) newCreditReport.avgAge = 0
+		else
+			newCreditReport.avgAge =
+				newLoans.reduce((a, c) => a + (newMonth - c.startTime), 0) /
+				newCreditReport.numberOfAccounts
 
 		this.setState({
 			month: newMonth,
