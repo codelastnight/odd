@@ -82,12 +82,12 @@ class App extends Component {
 		this.state = {
 			name: 'John Doe',
 			balance: (Math.floor(Math.random() * 11) + 5) * 1000, // in dollars, random between 5k and 15k
-			paymentDue: 7000, // payment due for THIS month
+			paymentDue: 2000, // payment due for THIS month
 			loans: [
 				/* { startTime, termLength, monthlyPayment, APR, imgURL } */
 			],
-			monthlyRevenue: 8000, // money that will be earned by NEXT month
-			stores: [{ monthlyCost: 7000, monthlyIncome: 8000 }],
+			monthlyRevenue: 2100, // money that will be earned by NEXT month
+			stores: [{ monthlyCost: 2000, monthlyIncome: 2100 }],
 			creditReport: {
 				onTimePayments: 0,
 				missedPayments: 0,
@@ -157,6 +157,10 @@ class App extends Component {
 	}
 
 	nextMonth = () => {
+
+    let recession = Math.random() < (1 / 120)
+    let 
+
 		let newMonth = this.state.month + 1
 
 		// generate 5 new store options
