@@ -22,6 +22,7 @@ export default class StoreList extends Component {
 				{!this.props.prospective && <h1>My Properties</h1>}
 				{this.props.stores.map((s, i) => (
 					<Store
+						index={i + 1}
 						prospective={this.props.prospective}
 						monthlyCost={s.monthlyCost}
 						down={s.down}
