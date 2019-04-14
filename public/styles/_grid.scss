@@ -5,8 +5,8 @@
 	height: 100vh;
 }
 .header {
-	grid-column: 0 / 3;
-	grid-row: 0 / 1;
+	grid-column: 1/4;
+	grid-row: 1/2;
 	display: flex;
 	flex-direction: row;
 	.profile {
@@ -23,14 +23,14 @@
 	}
 }
 .loans {
-	grid-column: 0/1;
-	grid-row: 1/2;
+	grid-column: 1/2;
+	grid-row: 2/3;
 }
 .stores {
-	grid-column: 1/2;
-	grid-row: 1/2;
+	grid-column: 2/3;
+	grid-row: 2/3;
 }
 .notifs {
-	grid-column: 2/3;
-	grid-row: 1/2;
+	grid-column: 3/4;
+	grid-row: 2/3;
 }
