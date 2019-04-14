@@ -72,7 +72,7 @@ class App extends Component {
 			balance: (Math.floor(Math.random() * 11) + 5) * 1000, // in dollars, random between 5k and 15k
 			paymentDue: 0, // payment due for THIS month
 			loans: [
-				/* { startTime, termLength, monthlyPayment, minDue, APR } */
+				/* { startTime, termLength, monthlyPayment, minDue, APR, imgURL } */
 			],
 			monthlyRevenue: 0, // money that will be earned by NEXT month
 			stores: [{ monthlyCost: 2000, monthlyIncome: 8000 }],
@@ -112,13 +112,14 @@ class App extends Component {
 		}
 	}
 
-	takeOutLoan = (APR, amountOwed, termLength) => {
+	takeOutLoan = (APR, amountOwed, termLength, imgURL) => {
 		let newLoans = this.state.loans.slice().concat({
 			startTime: this.state.month,
 			monthlyPayment: monthlyPaymentOfLoan(termLength, APR, amountOwed),
 			minDue: monthlyPaymentOfLoan(termLength, APR, amountOwed),
 			termLength,
-			APR
+			APR,
+			imgURL
 		})
 
 		this.setState({ loans: newLoans, balance: this.state.balance + amountOwed })

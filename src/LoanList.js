@@ -19,7 +19,7 @@ export default class LoanList extends Component {
 							startTime={l.startTime}
 							minDue={l.minDue}
 							APR={l.APR}
-							imgURL={''}
+							imgURL={l.imgURL}
 						/>
 					)
 				})}
