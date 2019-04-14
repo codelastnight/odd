@@ -11,6 +11,7 @@ export default class StoreList extends Component {
 	render() {
 		return (
 			<div className="store-list">
+				<h1>My Properties</h1>
 				{this.props.store.map(s => (
 					<Store monthlyCost={s.monthlyCost} monthlyIncome={s.monthlyIncome} />
 				))}

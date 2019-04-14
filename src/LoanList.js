@@ -12,6 +12,7 @@ export default class LoanList extends Component {
 		return (
 			<div
 				className={'loanList' + (this.props.prospective ? ' prospective' : '')}>
+				<h1>current Loans</h1>
 				{this.props.loans.map((l, i) => {
 					return (
 						<Loan

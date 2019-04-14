@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Button from './Buttons'
+import Button from './Button'
 /**
  * props: {
  *      monthlyCost: Number,

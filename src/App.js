@@ -4,7 +4,7 @@ import Header from './Header'
 import LoanList from './LoanList'
 import Modal from 'react-modal'
 import { getLoans } from './even'
-import Loan from './Loan'
+import StoreList from './StoreList'
 
 const customStyles = {
 	content: {
@@ -284,7 +284,12 @@ class App extends Component {
 					month={this.state.month}
 					onNextMonth={this.nextMonth}
 				/>
+
 				<LoanList loans={this.state.loans} onNewLoan={this.openNewLoanModal} />
+				<StoreList
+					stores={this.state.stores}
+					onNewLoan={this.openNewStoreModal}
+				/>
 			</div>
 		)
 	}
