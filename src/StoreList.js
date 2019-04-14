@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Store from './Store'
 
 /**
  * props: {
@@ -8,6 +9,12 @@ import React, { Component } from 'react'
  */
 export default class StoreList extends Component {
 	render() {
-		return <div className="store-list" />
+		return (
+			<div className="store-list">
+				{this.props.store.map(s => (
+					<Store monthlyCost={s.monthlyCost} monthlyIncome={s.monthlyIncome} />
+				))}
+			</div>
+		)
 	}
 }
