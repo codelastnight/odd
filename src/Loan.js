@@ -3,11 +3,24 @@ import React, { Component } from 'react'
 /**
  * props: {
  *      monthlyPayment: Number,
- *      name: String, // could also be url to image of the loan provider
+ * 		termLength: Number, // in months
+ * 		startTime: Number, // month at which this loan was taken out
+ * 		minDue: Number, // what's due in the next payment
+ * 		APR: Number, // annual percentage rate
+ *      imgURL: String,
  * }
  */
 export default class Loan extends Component {
 	render() {
-		return <div className="loan" />
+		return (
+			<div className="loan">
+				<div className="loanImg">
+					<img />
+				</div>
+				<div className="info">
+					<h3> {this.props.name} </h3>
+				</div>
+			</div>
+		)
 	}
 }

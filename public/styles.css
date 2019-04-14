@@ -44,47 +44,43 @@ h1 {
   grid-template-rows: 3rem 20vh 1fr 3rem;
   height: 100vh;
 }
-
-.header {
+.App .header {
   grid-column: 2/5;
   grid-row: 2/3;
   display: grid;
   grid-template-columns: 20vh auto 6em 15em;
 }
-.header .profile {
+.App .header .profile {
   grid-column: 1/2;
 }
-.header .info {
+.App .header .info {
   grid-column: 2/3;
   margin-right: 2em;
   align-self: center;
 }
-.header .info .stats {
+.App .header .info .stats {
   display: flex;
 }
-.header .info .stats h3 {
+.App .header .info .stats h3 {
   margin-right: 2em;
 }
-.header .month {
+.App .header .month {
   grid-column: 3/4;
   place-self: center;
 }
-.header .next {
+.App .header .next {
   grid-column: 4/5;
   place-self: center;
 }
-
-.loans {
+.App .loans {
   grid-column: 2/3;
   grid-row: 3/4;
 }
-
-.stores {
+.App .stores {
   grid-column: 3/4;
   grid-row: 4/5;
 }
-
-.notifs {
+.App .notifs {
   grid-column: 4/5;
   grid-row: 3/4;
 }
