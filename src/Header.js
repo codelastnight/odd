@@ -42,7 +42,7 @@ export default class Header extends Component {
 					</div>
 				</div>
 				<div className="month">
-					<h3>Year {Math.floor(this.props.month / 12)}</h3>
+					<h3>Year {Math.floor(this.props.month / 12) + 2019}</h3>
 					<p>{monthNames[this.props.month % 12]}</p>
 				</div>
 				<div className="next">

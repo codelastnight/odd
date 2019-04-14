@@ -213,6 +213,8 @@ class App extends Component {
 			this.state.stores.reduce((a, c) => a + c.monthlyCost, 0) +
 			newLoans.reduce((a, c) => a + c.minDue, 0)
 
+		console.log(newLoans)
+
 		// update credit report
 		newCreditReport.numberOfAccounts = newLoans.length
 		newCreditReport.avgAge =
@@ -275,11 +277,12 @@ class App extends Component {
 					/>
 				</Modal>
 				<Header
-					creditScore={700}
-					balance={7000}
-					paymentDue={600}
-					totalRevenue={600}
-					month={6}
+					creditScore={calculateCreditScore(this.state.creditReport)}
+					balance={this.state.balance}
+					paymentDue={this.state.paymentDue}
+					totalRevenue={this.state.monthlyRevenue}
+					month={this.state.month}
+					onNextMonth={this.nextMonth}
 				/>
 				<LoanList loans={this.state.loans} onNewLoan={this.openNewLoanModal} />
 			</div>
