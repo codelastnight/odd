@@ -57,15 +57,8 @@ const generateStoreOption = () => {
 const calculateCreditScore = creditReport => {
 	let scorePercent = 0
 
-	// payment history is 40% of the credit score
-	if (creditReport.onTimePayments === 0 && creditReport.missedPayments === 0)
-		scorePercent += 0.15
-	else
-		scorePercent +=
-			0.4 *
-			(creditReport.onTimePayments /
-				(creditReport.missedPayments + creditReport.onTimePayments)) **
-				4
+	scorePercent +=
+		0.4 * (1 / (1 + Math.E ** (-creditReport.onTimePayments / 16)))
 
 	// average age of accounts is 40% of credit score
 	scorePercent += 0.4 * (2 / (1 + Math.E ** (-creditReport.avgAge / 12)) - 1)
