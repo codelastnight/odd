@@ -85,12 +85,12 @@ class App extends Component {
 		this.state = {
 			name: 'John Doe',
 			balance: (Math.floor(Math.random() * 11) + 5) * 1000, // in dollars, random between 5k and 15k
-			paymentDue: 2000, // payment due for THIS month
+			paymentDue: 7000, // payment due for THIS month
 			loans: [
 				/* { startTime, termLength, monthlyPayment, APR, imgURL } */
 			],
 			monthlyRevenue: 8000, // money that will be earned by NEXT month
-			stores: [{ monthlyCost: 2000, monthlyIncome: 8000 }],
+			stores: [{ monthlyCost: 7000, monthlyIncome: 8000 }],
 			creditReport: {
 				onTimePayments: 0,
 				missedPayments: 0,
@@ -131,6 +131,9 @@ class App extends Component {
 		let newPaymentDue =
 			this.state.paymentDue + this.state.storeOptions[i].monthlyCost
 
+		let newMonthlyRevenue =
+			this.state.monthlyRevenue + this.state.storeOptions[i].monthlyIncome
+
 		let newStoreOptions = this.state.storeOptions.slice()
 		let newStores = this.state.stores
 			.slice()
@@ -139,6 +142,7 @@ class App extends Component {
 		this.setState({
 			paymentDue: newPaymentDue,
 			storeOptions: newStoreOptions,
+			monthlyRevenue: newMonthlyRevenue,
 			stores: newStores,
 			isNewStoreModalOpen: false
 		})

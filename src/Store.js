@@ -28,8 +28,8 @@ export default class Store extends Component {
 						<Button type="link">Upgrade</Button>
 					</div>
 					<div className="stats">
-						<div className="income">Income: +{this.props.monthlyIncome}</div>
-						<div className="cost">Cost: -{this.props.monthlyCost}</div>
+						<div className="income">Income: ~{this.props.monthlyIncome}</div>
+						<div className="cost">Cost: {this.props.monthlyCost}</div>
 					</div>
 				</div>
 			</div>
