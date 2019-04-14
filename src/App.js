@@ -256,23 +256,20 @@ class App extends Component {
 					style={customStyles}
 					contentLabel="New Loan">
 					<h2>New Loan</h2>
-					{this.state.loanOptions.map(l => {
-						if (l.termUnit === 'year') {
-							l.termLength *= 12
-						} else if (l.termUnit === 'day') {
-							l.termLength = Math.round(l.termLength / 30)
-						}
+					<LoanList
+						loans={this.state.loanOptions.map(l => {
+							if (l.termUnit === 'year') {
+								l.termLength *= 12
+							} else if (l.termUnit === 'day') {
+								l.termLength = Math.round(l.termLength / 30)
+							}
 
-						let APR = l.meanApr
-						let amount = l.maxAmount
+							l.APR = l.meanApr
+							l.imgURL = 'https://' + l.originator.images[0].url
 
-						return (
-							<Loan
-								termLength={l.termLength}
-								monthlyPayment={monthlyPaymentOfLoan(l.termLength, APR, amount)}
-							/>
-						)
-					})}
+							return l
+						})}
+					/>
 				</Modal>
 				<Header
 					creditScore={700}
