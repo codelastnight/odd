@@ -15,7 +15,10 @@
 	.info {
 		grid-column: 2/3;
     .stats {
-      display: inline;
+      display: flex;
+      h3 {
+        padding: 1em;
+      }
     }
 	}
 	.month {
