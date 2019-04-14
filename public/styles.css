@@ -75,6 +75,8 @@ h4 {
 
 .link {
   font-weight: 800;
+  border: none;
+  background: transparent;
 }
 
 .App {
