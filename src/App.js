@@ -213,6 +213,8 @@ class App extends Component {
 		})
 	}
 
+	openNewLoanModal = () => {}
+
 	render() {
 		return (
 			<div className="App">
@@ -223,7 +225,7 @@ class App extends Component {
 					totalRevenue={600}
 					month={6}
 				/>
-				<LoanList loans={this.state.loans} />
+				<LoanList loans={this.state.loans} onNewLoan={this.openNewLoanModal} />
 				{/* <Button type="meme" onClick={}>text</Button> */}
 			</div>
 		)
