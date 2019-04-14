@@ -5,6 +5,7 @@ export default class Notif extends Component {
 		return (
 			<div className="notifBox">
 				<h3>{this.props.text}</h3>
+				<p>{this.props.subtext}</p>
 			</div>
 		)
 	}
