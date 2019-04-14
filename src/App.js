@@ -55,7 +55,7 @@ const generateStoreOption = () => {
 	)
 	revenue = revenue - (revenue % 100)
 
-	return { monthlyCost: cost, monthlyIncome: revenue }
+	return { monthlyCost: cost, monthlyIncome: revenue, down: 6 * cost }
 }
 
 const calculateCreditScore = creditReport => {
@@ -87,7 +87,7 @@ class App extends Component {
 				/* { startTime, termLength, monthlyPayment, APR, imgURL } */
 			],
 			monthlyRevenue: 2100, // money that will be earned by NEXT month
-			stores: [{ monthlyCost: 2000, monthlyIncome: 2100 }],
+			stores: [{ monthlyCost: 2000, monthlyIncome: 2100, down: 12000 }],
 			creditReport: {
 				onTimePayments: 0,
 				missedPayments: 0,
@@ -123,7 +123,9 @@ class App extends Component {
 
 	buyStore = i => {
 		// buys store indexed as i in the storeOptions array
-		if (this.state.balance < this.state.storeOptions[i].monthlyCost) return
+		if (this.state.balance < this.state.storeOptions[i].down) return
+
+		let newBalance = this.state.balance - this.state.storeOptions[i].down
 
 		let newPaymentDue =
 			this.state.paymentDue + this.state.storeOptions[i].monthlyCost
@@ -137,6 +139,7 @@ class App extends Component {
 			.concat(newStoreOptions.splice(i, 1)[0])
 
 		this.setState({
+			balance: newBalance,
 			paymentDue: newPaymentDue,
 			storeOptions: newStoreOptions,
 			monthlyRevenue: newMonthlyRevenue,

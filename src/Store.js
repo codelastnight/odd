@@ -30,6 +30,7 @@ export default class Store extends Component {
 					<div className="stats">
 						<div className="income">Income: ~{this.props.monthlyIncome}</div>
 						<div className="cost">Cost: {this.props.monthlyCost}</div>
+						<div className="cost">Down: {this.props.down}</div>
 					</div>
 				</div>
 			</div>
