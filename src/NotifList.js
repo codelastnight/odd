@@ -12,7 +12,7 @@ export default class NotifList extends Component {
 			<div className={'notifList'}>
 				<h1>Notifications</h1>
 				{this.props.notifs.map((n, i) => {
-					return <Notif text={n} />
+					return <Notif text={n.text} />
 				})}
 			</div>
 		)

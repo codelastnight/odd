@@ -22,16 +22,49 @@ const customStyles = {
 	}
 }
 
-const serious = [
-	'Oopsie woopsie! The economy just crashed!',
-	'A catastrophic earthquake wipe out half your employees.',
-	'You committed tax fraud!'
-]
-const mild = [
-	'YEET bear market :)',
-	'We are experiencing a recessionary gap.',
-	'You get a cat girlfriend and your reputation goes down the drain.',
-	"Your CTO tweets that you're going private."
+const calamities = [
+	{
+		text: 'Oopsie woopsie! The economy just crashed!',
+		subtext: 'You lose half of your revenue this month.',
+		severity: 0,
+		result: 0
+	},
+	{
+		text: 'A catastrophic earthquake wipes out one of your buildings.',
+		subtext: 'You lose 2 of your stores',
+		severity: 0,
+		result: 1
+	},
+	{
+		text: 'You committed tax fraud!',
+		subtext: 'You lose half of your revenue this month.',
+		severity: 0,
+		result: 0
+	},
+	{
+		text: 'YEET bear market :)',
+		subtext: 'You lose 20% of your revenue this month.',
+		severity: 1,
+		result: 2
+	},
+	{
+		text: 'We are experiencing a recessionary gap.',
+		subtext: 'You lose 20% of your revenue this month.',
+		severity: 1,
+		result: 2
+	},
+	{
+		text: 'You get a cat girlfriend and your reputation goes down the drain.',
+		subtext: 'You lose 20% of your revenue this month.',
+		severity: 1,
+		result: 2
+	},
+	{
+		text: "Your CTO tweets that you're going private",
+		subtext: 'You lose 20% of your revenue this month.',
+		severity: 1,
+		result: 2
+	}
 ]
 
 const getRandomZipCode = location => {
@@ -178,28 +211,23 @@ class App extends Component {
 		// contraction results in productivity decreasing by 20%
 		let recession = Math.random() < 1 / 120
 		let contraction = Math.random() < 1 / 12
+		let calamity
 
 		if (recession) {
 			let newNotifs = this.state.notifs.slice()
 
-			newNotifs.splice(
-				0,
-				0,
-				serious[Math.floor(Math.random() * serious.length)] +
-					' Revenue decreases by 50%.'
-			)
+			let severe = calamities.filter(c => c.severity === 0)
+			newNotifs.splice(0, 0, severe[Math.floor(Math.random() * severe.length)])
+			calamity = newNotifs[0]
 			this.setState({
 				notifs: newNotifs
 			})
 		} else if (contraction) {
 			let newNotifs = this.state.notifs.slice()
 
-			newNotifs.splice(
-				0,
-				0,
-				mild[Math.floor(Math.random() * mild.length)] +
-					' Revenue decreases by 20%.'
-			)
+			let mild = calamities.filter(c => c.severity === 1)
+			newNotifs.splice(0, 0, mild[Math.floor(Math.random() * mild.length)])
+			calamity = newNotifs[0]
 			this.setState({
 				notifs: newNotifs
 			})
@@ -212,8 +240,26 @@ class App extends Component {
 
 		// add monthlyRevenue to balance
 		let revMult = Math.random() * 0.2 + 0.9
-		if (recession) revMult /= 2
-		if (contraction) revMult *= 0.8
+
+		if (calamity) {
+			switch (calamity.result) {
+				case 0:
+					console.log('case 0')
+					revMult /= 2
+					break
+				case 1:
+					console.log('case 1')
+					if (this.state.stores.length > 0)
+						this.closeStore(
+							Math.floor(Math.random() * this.state.stores.length)
+						)
+					break
+				case 2:
+					console.log('case 2')
+					revMult *= 0.8
+					break
+			}
+		}
 
 		let newBalance =
 			this.state.balance -
