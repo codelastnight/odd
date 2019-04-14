@@ -10,10 +10,12 @@ import Button from './Button.js'
 export default class LoanList extends Component {
 	render() {
 		return (
-			<div className="loanList">
+			<div
+				className={'loanList' + (this.props.prospective ? ' prospective' : '')}>
 				{this.props.loans.map(l => {
 					return (
 						<Loan
+							prospective={this.props.prospective}
 							monthlyPayment={l.monthlyPayment}
 							termLength={l.termLength}
 							startTime={l.startTime}

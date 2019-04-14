@@ -38,6 +38,21 @@
 }
 
 .loanList {
+	&.prospective {
+		overflow-y: scroll;
+		.loan {
+			margin-bottom: 1em;
+			padding: 1em;
+			margin-left: 2em;
+			margin-right: 2em;
+		}
+		.loanImg {
+			justify-self: center;
+			width: 50%;
+			height: auto;
+		}
+	}
+
 	grid-column: 2/3;
 	grid-row: 3/4;
 	.newLoan {
@@ -49,6 +64,7 @@
 		display: grid;
 		grid-template-columns: auto 35%;
 		grid-template-rows: 2fr 1fr;
+
 		.loanImg {
 			grid-column: 1/2;
 			grid-row: 1/3;
@@ -67,6 +83,12 @@
 			place-self: center;
 			grid-column: 2/3;
 			grid-row: 2/3;
+		}
+
+		&.prospective {
+			.info {
+				grid-row: 1/3;
+			}
 		}
 	}
 }

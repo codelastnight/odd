@@ -121,6 +121,20 @@ h4 {
   grid-column: 2/3;
   grid-row: 3/4;
 }
+.loanList.prospective {
+  overflow-y: scroll;
+}
+.loanList.prospective .loan {
+  margin-bottom: 1em;
+  padding: 1em;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+.loanList.prospective .loanImg {
+  justify-self: center;
+  width: 50%;
+  height: auto;
+}
 .loanList .newLoan {
   padding-top: 1em;
 }
@@ -148,6 +162,9 @@ h4 {
   place-self: center;
   grid-column: 2/3;
   grid-row: 2/3;
+}
+.loanList .loan.prospective .info {
+  grid-row: 1/3;
 }
 
 .stores {
