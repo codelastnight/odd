@@ -42,7 +42,13 @@
 		grid-row: 3/4;
 	}
 }
-
+.Contain {
+	overflow-y: scroll;
+	max-height: 60vh;
+	&::-webkit-scrollbar {
+		width: 0 !important;
+	}
+}
 .loanList {
 	&.prospective {
 		.loan {
@@ -59,13 +65,7 @@
 
 	grid-column: 2/3;
 	grid-row: 3/4;
-	.loanContain {
-		overflow-y: scroll;
-		max-height: 60vh;
-		&::-webkit-scrollbar {
-			width: 0 !important;
-		}
-	}
+
 	.newLoan {
 		padding-top: 1em;
 	}

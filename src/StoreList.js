@@ -20,28 +20,30 @@ export default class StoreList extends Component {
 		return (
 			<div className="storeList">
 				{!this.props.prospective && <h1>My Properties</h1>}
-				{this.props.stores.map((s, i) => (
-					<Store
-						index={i + 1}
-						prospective={this.props.prospective}
-						monthlyCost={s.monthlyCost}
-						down={s.down}
-						close={() => this.props.closeStore(i)}
-						monthlyIncome={s.monthlyIncome}
-						open={this.state.openStore === i}
-						toggleExpand={() => {
-							if (this.props.prospective) {
-								this.props.onNewStore(i)
-							} else {
-								if (this.state.openStore === i) {
-									this.setState({ openStore: -1 })
+				<div className="Contain">
+					{this.props.stores.map((s, i) => (
+						<Store
+							index={i + 1}
+							prospective={this.props.prospective}
+							monthlyCost={s.monthlyCost}
+							down={s.down}
+							close={() => this.props.closeStore(i)}
+							monthlyIncome={s.monthlyIncome}
+							open={this.state.openStore === i}
+							toggleExpand={() => {
+								if (this.props.prospective) {
+									this.props.onNewStore(i)
 								} else {
-									this.setState({ openStore: i })
+									if (this.state.openStore === i) {
+										this.setState({ openStore: -1 })
+									} else {
+										this.setState({ openStore: i })
+									}
 								}
-							}
-						}}
-					/>
-				))}
+							}}
+						/>
+					))}
+				</div>
 				{!this.props.prospective && (
 					<div className="newStore">
 						<Button type="clear" onClick={this.props.onNewStore}>
