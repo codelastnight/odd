@@ -15,10 +15,13 @@ export default class Loan extends Component {
 		return (
 			<div className="loan">
 				<div className="loanImg">
-					<img />
+					<img src={this.props.imgURL} alt="pee" />
 				</div>
 				<div className="info">
-					<h3> {this.props.name} </h3>
+					<h3> {this.props.monthlyPayment} /month </h3>
+					<h4>
+						{this.props.termLength} APR: {this.props.APR}
+					</h4>
 				</div>
 			</div>
 		)
